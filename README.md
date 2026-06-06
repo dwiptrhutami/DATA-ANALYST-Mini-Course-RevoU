@@ -51,7 +51,3 @@ https://datastudio.google.com/reporting/8ff097c3-76e0-4807-ba0f-d8c364b6509e
 📌 Conclusion
 The analysis suggests that gender has only a weak influence on students’ exam performance. Other factors such as parental education level and test preparation tend to play a more important role.
 
-📎 Dataset Source
-
-Students Performance in Exams
-https://www.kaggle.com/datasets/spscientist/students-performance-in-exams
