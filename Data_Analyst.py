@@ -2,9 +2,6 @@
 import pandas as pd
 import json
 from kaggle.api.kaggle_api_extended import KaggleApi
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 """Save Key API into JSON"""
 data_token = {"username": "yourname", "key": "xxxxxxxxxxxx"}
@@ -117,4 +114,12 @@ df_copy.info()
 
 # Save into local directory
 df_copy.to_excel("students_performance.xlsx", index=False)
+
+"""3. EDA"""
+
+# Correlation between Gender and Score
+df_copy["gender_encoded"] = df_copy["GENDER"].map({"M": 0, "F": 1})
+df_copy[["gender_encoded", "MATH SCORE"]].corr()
+df_copy[["gender_encoded", "WRITING SCORE"]].corr()
+df_copy[["gender_encoded", "READING SCORE"]].corr()
 
