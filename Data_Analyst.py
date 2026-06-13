@@ -118,8 +118,34 @@ df_copy.to_excel("students_performance.xlsx", index=False)
 """3. EDA"""
 
 # Correlation between Gender and Score
-df_copy["gender_encoded"] = df_copy["GENDER"].map({"M": 0, "F": 1})
-df_copy[["gender_encoded", "MATH SCORE"]].corr()
-df_copy[["gender_encoded", "WRITING SCORE"]].corr()
-df_copy[["gender_encoded", "READING SCORE"]].corr()
+# Correlation Matrix between Math, Reading, Writing Score
+df_copy[["MATH SCORE", "READING SCORE", "WRITING SCORE"]].corr()
+sns.heatmap(df_copy[["MATH SCORE", "READING SCORE", "WRITING SCORE"]].corr(numeric_only=True),
+            annot=True,
+            cmap='coolwarm')
+plt.show()
 
+# Save Correlation Graph
+pairs = [
+    ('MATH SCORE', 'READING SCORE'),
+    ('MATH SCORE', 'WRITING SCORE'),
+    ('READING SCORE', 'WRITING SCORE')
+]
+
+for x, y in pairs:
+    plt.figure(figsize=(6,5))
+
+    sns.regplot(
+        data=df_copy,
+        x=x,
+        y=y,
+        scatter_kws={'alpha':0.5}
+    )
+
+    plt.title(f'{x.title()} vs {y.title()}')
+    plt.tight_layout()
+
+    filename = f'{x}_vs_{y}.png'.replace(' ', '_')
+    plt.savefig(filename, dpi=300)
+
+    plt.close()
